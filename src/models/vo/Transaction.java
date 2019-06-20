@@ -16,7 +16,7 @@ public class Transaction {
     private  String  nonce;
     private  String  value;
     private  String  input;
-    private  int  ExpireHeight;
+  //  private  int  ExpireHeight;
 
     public String getChainId() {
         return chainId;
@@ -98,13 +98,13 @@ public class Transaction {
         this.input = input;
     }
 
-    public int getExpireHeight() {
-        return ExpireHeight;
-    }
-
-    public void setExpireHeight(int expireHeight) {
-        ExpireHeight = expireHeight;
-    }
+//    public int getExpireHeight() {
+//        return ExpireHeight;
+//    }
+//
+//    public void setExpireHeight(int expireHeight) {
+//        ExpireHeight = expireHeight;
+//    }
 
 
 }

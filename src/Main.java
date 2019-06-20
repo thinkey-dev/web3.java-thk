@@ -1,27 +1,7 @@
 import com.alibaba.fastjson.JSONArray;
-import example.MetaCoin;
-import io.reactivex.Flowable;
-import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.DefaultBlockParameter;
-import org.web3j.protocol.core.Request;
-import org.web3j.protocol.core.methods.request.*;
-import org.web3j.protocol.core.methods.request.Transaction;
-import org.web3j.protocol.core.methods.response.*;
-import org.web3j.protocol.core.methods.response.EthFilter;
-import org.web3j.protocol.core.methods.response.ShhPost;
-import org.web3j.protocol.websocket.events.LogNotification;
-import org.web3j.protocol.websocket.events.NewHeadsNotification;
 import utils.*;
-
-
-import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import static org.web3j.tx.Transfer.GAS_LIMIT;
-import static org.web3j.tx.gas.DefaultGasProvider.GAS_PRICE;
-import static utils.Sign.recoverFromSignature;
 
 public class Main {
 
@@ -31,8 +11,6 @@ public class Main {
 
 
         web3.Thk web3=new web3.Thk();
-
-
 
 
         String  chainId2="2";
@@ -128,7 +106,7 @@ public class Main {
 
         String sig=thkUtils.CreateSig(ecKeyPair,from,to,chainId2,fromChainId,toChainId,nonce,value,input);
 
-        Map mapresult=web3.SendTx(chainId22,fromChainId,toChainId,sig,pub,from,to,nonce,value,input,ExpireHeight);
+        Map mapresult=web3.SendTx(chainId22,fromChainId,toChainId,sig,pub,from,to,nonce,value,input);
         System.out.println(mapresult);
 
 
@@ -152,6 +130,10 @@ public class Main {
         String  input_10="0xdfc02018";
         Map calltrResult=web3.CallTransaction(chainId_10,from_10,to_10,nonce_10,value_10,input_10);
         System.out.println(calltrResult);
+
+
+        //11. 发送合约
+        //    详见 thkContract->Contract_Test
 
 
     }

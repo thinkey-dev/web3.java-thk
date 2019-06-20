@@ -44,7 +44,6 @@ public class Thk {
         return maps;
    }
 
-
     /* 获取交易详情*/
     public Map GetTransactionByHash(String chainId,String hash ){
         //举例
@@ -61,7 +60,6 @@ public class Thk {
         return maps;
     }
 
-
     /* 获取链详情*/
     public Map GetStats(String chainId){
         //举例
@@ -74,7 +72,6 @@ public class Thk {
         Map maps = (Map) JSON.parse(result);
         return maps;
     }
-
 
     /* 根据地址获取指定高度内的交易信息*/
     public JSONArray GetTransactions(String chainId, String address, String startHeight, String endHeight){
@@ -103,6 +100,7 @@ public class Thk {
         Map maps = (Map) JSON.parse(result);
         return maps;
     }
+
     //获取对应高度内交易
     public Map GetBlockTxs(String chainId, String height,String page,String size){
         //举例
@@ -120,7 +118,7 @@ public class Thk {
 
     //发送交易
     public Map SendTx(String chainId, String fromChainId, String toChainId, String sig, String pub, String from,
-                      String to, String nonce, String value,String input,int ExpireHeight){
+                      String to, String nonce, String value,String input){
         //举例
         Map map=new HashMap();
         map.put("chainId",chainId);
@@ -133,6 +131,29 @@ public class Thk {
         map.put("nonce",nonce);
         map.put("value",value);
         map.put("input",input);
+        //map.put("ExpireHeight",ExpireHeight);
+
+        String jsonObj = JSONObject.toJSONString(map);
+        String postJson="{\"method\": \"SendTx\",\"params\": "+jsonObj+"}";
+        String result=Post(Url,postJson);
+        Map maps = (Map) JSON.parse(result);
+        return maps;
+    }
+
+    //发送交易
+    public Map SendTx(Transaction info){
+        //举例
+        Map map=new HashMap();
+        map.put("chainId",info.getChainId());
+        map.put("fromChainId",info.getFromChainId());
+        map.put("toChainId",info.getToChainId());
+        map.put("sig",info.getSig());
+        map.put("pub",info.getPub());
+        map.put("from",info.getFrom());
+        map.put("to",info.getTo());
+        map.put("nonce",info.getNonce());
+        map.put("value",info.getValue());
+        map.put("input",info.getInput());
         //map.put("ExpireHeight",ExpireHeight);
 
         String jsonObj = JSONObject.toJSONString(map);
@@ -250,7 +271,7 @@ public class Thk {
      */
     private static String Post(String strURL, String params) {
         System.out.println("server:\n"+strURL);
-        System.out.println("params:\n"+params);
+        System.out.println("params:\n"+params+"\n");
         BufferedReader reader = null;
         try {
             URL url = new URL(strURL);// 创建连接
