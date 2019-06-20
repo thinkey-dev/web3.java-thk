@@ -26,6 +26,9 @@ import java.util.*;
 public class Contract_Test {
 
     public  static  void  main(String[] args){
+
+        System.out.println("Contract Test......");
+
         String chainId22="2";
         Transaction info=new Transaction();
         info.setFrom("0x2c7536e3605d9c16a7a3d7b1898e529396a65c23");

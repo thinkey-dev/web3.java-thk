@@ -20,8 +20,6 @@ import static thkContract.FunctionEncoder.buildMethodSignature;
  */
 public class Contract {
 
-
-
     public static Map  Deploy(Transaction info, String binContent, List<Type> parameters){
         String result=FunctionEncoder.encodeConstructor(parameters);
         System.out.println("pac:"+result);
@@ -62,23 +60,18 @@ public class Contract {
         return Result;
     }
 
-    public  static Map  Send(Transaction info, Function function)
+    public static Map  Send(Transaction info, Function function)
     {
-
         String input= FunctionEncoder.encode(function);
         info.setInput(input);;
 
         //通过私钥获取公钥
         String pub= thkUtils.GetPublicKey();
-
         //获取ecKeyPair 用于生成签名
         ECKeyPair ecKeyPair=thkUtils.GetECKeyPair();
-
         String getSig=thkUtils.CreateSig(ecKeyPair,info.getFrom(),info.getTo(), info.getChainId(),info.getFromChainId(),info.getToChainId(),info.getNonce(),info.getValue(),info.getInput());
-
         info.setPub(pub);
         info.setSig(getSig);
-
 
 //        Map Result=new Thk().SendTx(info.getChainId(),info.getFromChainId(),info.getToChainId()
 //                ,info.getSig(),info.getPub(),info.getFrom(),info.getTo(), info.getNonce(),info.getValue(),info.getInput(),info.getExpireHeight());
@@ -88,45 +81,12 @@ public class Contract {
 
     }
 
-    public  static Map  Call(Transaction info, Function function)
+    public  static Map Call(Transaction info, Function function)
     {
-//        List<Type> parameters=function.getInputParameters();
-//        String result=FunctionEncoder.encodeConstructor(parameters);
-//        System.out.println("pac:"+result);
-//        String fastr="";
-//        if (result.length()>2){
-//            fastr =result.substring(2);
-//        }
-//
-//        if (fastr.contains("0x")){
-//            result=result.substring(2,fastr.length());
-//        }
-//
-//        String input=result;
-//        String faInput=input.substring(2);
-//
-//        if (!faInput.contains("0x")){
-//            input="0x"+input;
-//        }
-
-
-
         String input= FunctionEncoder.encode(function);
-
         info.setInput(input);
-
         //Map map=new Thk().CallTransaction(info.getChainId(),info.getFrom(),info.getTo(),info.getNonce(),info.getValue(),info.getInput());
         Map map=new Thk().CallTransaction(info);
-
-        return  map;
-
-    }
-
-    public  static  Map CallTransaction(Transaction info)
-    {
-        Map map=new Thk().CallTransaction(info.getChainId(),info.getFrom(),info.getTo(),info.getNonce(),info.getValue(),info.getInput());
         return  map;
     }
-
-
 }
