@@ -20,6 +20,7 @@ import static thkContract.FunctionEncoder.buildMethodSignature;
  */
 public class Contract {
 
+    //发布合约
     public static Map  Deploy(Transaction info, String binContent, List<Type> parameters){
         String result=FunctionEncoder.encodeConstructor(parameters);
         System.out.println("pac:"+result);
@@ -60,6 +61,7 @@ public class Contract {
         return Result;
     }
 
+    //需要共识且修改数据状态的合约调用
     public static Map  Send(Transaction info, Function function)
     {
         String input= FunctionEncoder.encode(function);
@@ -81,6 +83,7 @@ public class Contract {
 
     }
 
+    //从本地节点获取数据的合约调用
     public  static Map Call(Transaction info, Function function)
     {
         String input= FunctionEncoder.encode(function);

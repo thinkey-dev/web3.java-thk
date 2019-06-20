@@ -38,13 +38,15 @@ public class Contract_Test {
         info.setValue("0");
         info.setInput("");
         info.setPub(thkUtils.GetPublicKey());
+
         Thk web3=new Thk();
         String getnotnce=  web3.GetNonce(info.getChainId(),info.getFrom())+"";
         info.setNonce(getnotnce);
         info.setTo("");
+
         String binContent= FilesUtils.GetResourcesFile("Greeter.bin");
         try{
-
+            //发布合约
             Map result= Contract.Deploy(info,binContent, Collections.emptyList());
             System.out.println("sendtx result :" +result);
             Thread.sleep(5000);    //延时5秒
@@ -56,7 +58,7 @@ public class Contract_Test {
             }else{
                 System.err.println("TXhash is empty !!");
             }
-
+            //根据返回的Hash查询交易
             Map resultx=  web3.GetTransactionByHash(chainId22,Txhash);
 
             //返回结果获取合约地址
@@ -65,6 +67,7 @@ public class Contract_Test {
             }else{
                 System.err.println("contractAddress is empty.....");
             }
+
 
             getnotnce=  web3.GetNonce(info.getChainId(),info.getFrom())+"";
             info.setNonce(getnotnce);

@@ -85,13 +85,6 @@ public class Main {
         String toChainId="2";
 
 
-//        String from="";
-//        String to="";
-//        String nonce="33";
-//        String value="2333";
-//        String input="";
-//        int ExpireHeight=0;
-
         String pub="";
         //通过私钥获取公钥
         pub=thkUtils.GetPublicKey();
