@@ -22,10 +22,17 @@ import java.util.*;
 
 /*
 * 合约测试
+*
 * */
 public class Contract_Test {
+    // solc 下载地址：https://github.com/ethereum/solidity/releases/tag/v0.4.25
+    // 用 Greeter.so 生成 发合约需要的  abi 和 bin文件
+    // solc Greeter.sol  --bin --abi --optimize -o ./output/
+
+
 
     public  static  void  main(String[] args){
+
 
         System.out.println("Contract Test......");
 
