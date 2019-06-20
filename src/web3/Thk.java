@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.sun.javafx.collections.MappingChange;
 import models.Account;
 import models.TransactionByHash;
+import models.vo.Transaction;
 
 /**
  * Created by thk on 6/15/19.
@@ -22,8 +23,8 @@ public class Thk {
     * 服务期地址
     *
     * */
-   public String Url="http://test.thinkey.xyz";
-
+   //public String Url="http://test.thinkey.xyz";
+   public String Url="http://192.168.1.13:8093";
 
    /* 获取账户余额*/
    public Map GetAccount(String chainId,String address ){
@@ -132,7 +133,7 @@ public class Thk {
         map.put("nonce",nonce);
         map.put("value",value);
         map.put("input",input);
-        map.put("ExpireHeight",ExpireHeight);
+        //map.put("ExpireHeight",ExpireHeight);
 
         String jsonObj = JSONObject.toJSONString(map);
         String postJson="{\"method\": \"SendTx\",\"params\": "+jsonObj+"}";
@@ -197,6 +198,46 @@ public class Thk {
         return JSON.parseArray(result);
     }
 
+   //从合约中读取本地节点的数据
+   public Map CallTransaction(String chainId,String from,String  to  ,String nonce, String value,String input){
+       //举例
+       Map map=new HashMap();
+       map.put("chainId",chainId);
+       map.put("from",from);
+       map.put("to",to);
+       map.put("nonce",nonce);
+       map.put("value",value);
+       map.put("input",input);
+       map.put("fromChainId",chainId);
+       map.put("toChainId",chainId);
+
+       String jsonObj = JSONObject.toJSONString(map);
+       String postJson="{\"method\": \"CallTransaction\",\"params\": "+jsonObj+"}";
+       String result=Post(Url,postJson);
+       Map maps = (Map) JSON.parse(result);
+       return maps;
+   }
+    //从合约中读取本地节点的数据
+    public Map CallTransaction(Transaction info){
+        //举例参数
+        Map map=new HashMap();
+        map.put("chainId",info.getChainId());
+        map.put("from",info.getFrom());
+        map.put("to",info.getTo());
+        map.put("nonce",info.getNonce());
+        map.put("value",info.getValue());
+        map.put("input",info.getInput());
+        map.put("fromChainId",info.getFromChainId());
+        map.put("toChainId",info.getToChainId());
+
+        String jsonObj = JSONObject.toJSONString(map);
+        String postJson="{\"method\": \"CallTransaction\",\"params\": "+jsonObj+"}";
+        String result=Post(Url,postJson);
+        Map maps = (Map) JSON.parse(result);
+        return maps;
+    }
+
+
 
     /**
      * 发送HttpPost请求
@@ -208,8 +249,8 @@ public class Thk {
      * @return 成功:返回json字符串<br/>
      */
     private static String Post(String strURL, String params) {
-        System.out.println(strURL);
-        System.out.println(params);
+        System.out.println("server:\n"+strURL);
+        System.out.println("params:\n"+params);
         BufferedReader reader = null;
         try {
             URL url = new URL(strURL);// 创建连接
@@ -261,4 +302,7 @@ public class Thk {
         }
         return "error"; // 自定义错误信息
     }
+
+
+
 }

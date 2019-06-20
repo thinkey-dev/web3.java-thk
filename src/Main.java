@@ -1,23 +1,38 @@
 import com.alibaba.fastjson.JSONArray;
+import example.MetaCoin;
+import io.reactivex.Flowable;
+import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.DefaultBlockParameter;
+import org.web3j.protocol.core.Request;
+import org.web3j.protocol.core.methods.request.*;
+import org.web3j.protocol.core.methods.request.Transaction;
+import org.web3j.protocol.core.methods.response.*;
+import org.web3j.protocol.core.methods.response.EthFilter;
+import org.web3j.protocol.core.methods.response.ShhPost;
+import org.web3j.protocol.websocket.events.LogNotification;
+import org.web3j.protocol.websocket.events.NewHeadsNotification;
 import utils.*;
 
 
 import java.math.BigInteger;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import static org.web3j.tx.Transfer.GAS_LIMIT;
+import static org.web3j.tx.gas.DefaultGasProvider.GAS_PRICE;
 import static utils.Sign.recoverFromSignature;
 
 public class Main {
 
-    //私钥
-    static String privateKey = "0x4c0883a69102937d6231471b5dbb6204fe5129617082792ae468d01a3f362318";
     public static void main(String[] args) {
         System.out.println("web3 Test....");
 
 
 
         web3.Thk web3=new web3.Thk();
+
+
 
 
         String  chainId2="2";
@@ -111,7 +126,7 @@ public class Main {
         //获取ecKeyPair 用于生成签名
         ECKeyPair ecKeyPair=thkUtils.GetECKeyPair();
 
-        String sig=CreateSig(ecKeyPair,from,to,chainId2,fromChainId,toChainId,nonce,value,input);
+        String sig=thkUtils.CreateSig(ecKeyPair,from,to,chainId2,fromChainId,toChainId,nonce,value,input);
 
         Map mapresult=web3.SendTx(chainId22,fromChainId,toChainId,sig,pub,from,to,nonce,value,input,ExpireHeight);
         System.out.println(mapresult);
@@ -128,107 +143,18 @@ public class Main {
         System.out.println(result_CommitteeInfo);
 
 
+        //10  从合约中读取本地节点的数据
+        String  chainId_10="2";
+        String  from_10="0x0000000000000000000000000000000000000000";
+        String  to_10="0x0e50cea0402d2a396b0db1c5d08155bd219cc52e";
+        String  nonce_10="15";
+        String  value_10="0";
+        String  input_10="0xdfc02018";
+        Map calltrResult=web3.CallTransaction(chainId_10,from_10,to_10,nonce_10,value_10,input_10);
+        System.out.println(calltrResult);
+
+
     }
 
 
-
-
-    /**
-     *
-     * 根据私钥生成公钥
-     * */
-    private static   String GetPublicKey(){
-        ECKeyPair keyPair = null;
-
-        //String publicKey="0x044e3b81af9c2234cad09d679ce6035ed1392347ce64ce405f5dcd36228a25de6e47fd35c4215d1edf53e6f83de344615ce719bdb0fd878f6ed76f06dd277956de";
-
-        System.out.println(Numeric.hexStringToByteArray(privateKey).toString());
-        try {
-            keyPair = ECKeyPair.create(Numeric.hexStringToByteArray(privateKey));
-        }catch (Exception ex)
-        {
-            System.err.println(ex);
-        }
-
-        BigInteger publicKey1 =keyPair.getPublicKey();
-        String publicKeyHex = Numeric.toHexStringWithPrefix(publicKey1);
-
-        String publicKeyHexstr=publicKeyHex;
-        publicKeyHex=publicKeyHex.replace("0x","0x04");
-
-        System.out.println("publicKeyHex="+publicKeyHex);
-        return   publicKeyHex;
-    }
-
-
-    /**
-     * 生成签名函数
-     *
-     * */
-    private  static  String CreateSig(ECKeyPair keyPair,String  from, String  to,String  chainId,String  fromChainId,String  toChainId,String Nonce,String  value,String  input)
-    {
-//        ECKeyPair keyPair = null;
-//        String privateKey = "0x4c0883a69102937d6231471b5dbb6204fe5129617082792ae468d01a3f362318";
-//        System.out.println(Numeric.hexStringToByteArray(privateKey).toString());
-//        try {
-//            keyPair = ECKeyPair.create(Numeric.hexStringToByteArray(privateKey));
-//        }catch (Exception ex)
-//        {
-//            System.err.println(ex);
-//        }
-//
-//        BigInteger publicKey1 =keyPair.getPublicKey();
-//        String publicKeyHex = Numeric.toHexStringWithPrefix(publicKey1);
-//
-//        String publicKeyHexstr=publicKeyHex;
-//        publicKeyHex=publicKeyHex.replace("0x","0x04");
-//
-//        System.out.println("publicKeyHex="+publicKeyHex);
-
-        if (to.length()>2){
-          to =to.substring(2,to.length());
-        }
-        if (input.length()>2){
-            input =input.substring(2,input.length());
-        }
-        if (from.length()>2){
-            from =from.substring(2,from.length());
-        }
-
-        String jionstr=chainId+from+to+Nonce+value+input;
-        byte[] messageHash;
-        messageHash = Hash.sha3(jionstr.getBytes());
-       // System.out.println("messageHash:  "+messageHash);
-
-        ECDSASignature sig = keyPair.sign(messageHash);
-        // Now we have to work backwards to figure out the recId needed to recover the signature.
-        int recId = -1;
-        for (int i = 0; i < 4; i++) {
-            BigInteger k = recoverFromSignature(i, sig, messageHash);
-            System.out.println("k.index: "+i+ " "+ k);
-            if (k != null && k.equals(keyPair.getPublicKey())) {
-                recId = i;
-                break;
-            }
-        }
-        if (recId == -1) {
-            throw new RuntimeException(
-                    "Could not construct a recoverable key. Are your credentials valid?");
-        }
-        int headerByte = recId + 27;
-        byte v = (byte) headerByte;
-        byte[] r = Numeric.toBytesPadded(sig.r, 32);
-        byte[] s = Numeric.toBytesPadded(sig.s, 32);
-        Sign.SignatureData    signatureData ;
-        signatureData=new Sign.SignatureData(v, r, s);
-        String Rstr=Numeric.toHexString(r);
-        String Sstr=Numeric.toHexString(s);
-        String sigData=Rstr+Sstr.replace("0x","");
-        if (v==0){
-            sigData=sigData+"1b";
-        }else{
-            sigData=sigData+"1c";
-        }
-        return   sigData;
-    }
 }
