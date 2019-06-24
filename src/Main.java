@@ -9,6 +9,10 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("web3 Test....");
 
+
+        //设置私钥
+        //thkUtils.privateKey="";
+
         web3.Thk web3=new web3.Thk();
 
 

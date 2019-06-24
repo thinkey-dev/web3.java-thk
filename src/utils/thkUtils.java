@@ -10,7 +10,7 @@ import static utils.Sign.recoverFromSignature;
  * Created by thk on 6/18/19.
  */
 public class thkUtils {
-    static String privateKey = "0x4c0883a69102937d6231471b5dbb6204fe5129617082792ae468d01a3f362318";
+   public static String privateKey = "0x4c0883a69102937d6231471b5dbb6204fe5129617082792ae468d01a3f362318";
 
 
 
