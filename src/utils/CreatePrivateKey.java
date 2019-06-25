@@ -27,17 +27,23 @@ public class CreatePrivateKey {
 
         byte[] seed = MnemonicUtils.generateSeed(mnemonic, password);
 
-        ECKeyPair ecKeyPair = ECKeyPair.create(sha256(seed));
+        //test
+        //ECKeyPair ecKeyPair = ECKeyPair.create(sha256(seed));
+        ECKeyPair ecKeyPair = ECKeyPair.create(Numeric.hexStringToByteArray("0x5027156baafa0758473862ca54acd4690f0426ab267186b4324661b474576989"));
+
         String priKeyWithPrefix = Numeric.toHexStringWithPrefix(ecKeyPair.getPrivateKey());
         String pubKeyWithPrefix = Numeric.toHexStringWithPrefix(ecKeyPair.getPublicKey());
 
+
+        String pubKey= Numeric.toHexString(Numeric.toBytesPadded(ecKeyPair.getPublicKey(), 64));
         //根据公钥或者ECKeyPair获取钱包地址
+
         String address1 = Keys.getAddress(ecKeyPair);
         String address2 = Keys.getAddress(pubKeyWithPrefix);
 
-
+        
         System.out.println("privatekey:"+priKeyWithPrefix);
-        System.out.println("publickey:"+pubKeyWithPrefix);
+        System.out.println("publickey:"+pubKey);   //
 
         System.out.println("Address:"+address1);
         System.out.println("Address:"+address2);

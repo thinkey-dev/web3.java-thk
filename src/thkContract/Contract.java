@@ -21,7 +21,7 @@ import static thkContract.FunctionEncoder.buildMethodSignature;
 public class Contract {
 
     //发布合约
-    public static Map  Deploy(Transaction info, String binContent, List<Type> parameters){
+    public static Map  Deploy(Thk thk ,Transaction info, String binContent, List<Type> parameters){
         String result=FunctionEncoder.encodeConstructor(parameters);
         System.out.println("pac:"+result);
         String fastr="";
@@ -55,14 +55,15 @@ public class Contract {
         info.setSig(getSig);
 
 
-        Map Result=new Thk().SendTx(info.getChainId(),info.getFromChainId(),info.getToChainId()
-                ,info.getSig(),info.getPub(),info.getFrom(),info.getTo(), info.getNonce(),info.getValue(),info.getInput());
+       // Map Result=new Thk().SendTx(info.getChainId(),info.getFromChainId(),info.getToChainId()
+       //         ,info.getSig(),info.getPub(),info.getFrom(),info.getTo(), info.getNonce(),info.getValue(),info.getInput());
 
+        Map Result=thk.SendTx(info);
         return Result;
     }
 
     //需要共识且修改数据状态的合约调用
-    public static Map  Send(Transaction info, Function function)
+    public static Map  Send(Thk thk,Transaction info, Function function)
     {
         String input= FunctionEncoder.encode(function);
         info.setInput(input);;
@@ -78,18 +79,18 @@ public class Contract {
 //        Map Result=new Thk().SendTx(info.getChainId(),info.getFromChainId(),info.getToChainId()
 //                ,info.getSig(),info.getPub(),info.getFrom(),info.getTo(), info.getNonce(),info.getValue(),info.getInput(),info.getExpireHeight());
 
-        Map Result=new Thk().SendTx(info);
+        Map Result=thk.SendTx(info);
         return Result;
 
     }
 
     //从本地节点获取数据的合约调用
-    public  static Map Call(Transaction info, Function function)
+    public  static Map Call(Thk thk,Transaction info, Function function)
     {
         String input= FunctionEncoder.encode(function);
         info.setInput(input);
         //Map map=new Thk().CallTransaction(info.getChainId(),info.getFrom(),info.getTo(),info.getNonce(),info.getValue(),info.getInput());
-        Map map=new Thk().CallTransaction(info);
+        Map map=thk.CallTransaction(info);
         return  map;
     }
 }

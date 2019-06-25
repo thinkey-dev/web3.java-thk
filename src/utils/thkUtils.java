@@ -10,8 +10,16 @@ import static utils.Sign.recoverFromSignature;
  * Created by thk on 6/18/19.
  */
 public class thkUtils {
-   public static String privateKey = "0x4c0883a69102937d6231471b5dbb6204fe5129617082792ae468d01a3f362318";
+   //public static String privateKey = "0x4c0883a69102937d6231471b5dbb6204fe5129617082792ae468d01a3f362318";
 
+    private static String privateKey ="";
+    public static String getPrivateKey() {
+        return privateKey;
+    }
+
+    public static void setPrivateKey(String privateKey) {
+        thkUtils.privateKey = privateKey;
+    }
 
 
     /**
@@ -26,11 +34,13 @@ public class thkUtils {
             System.err.println(ex);
         }
         BigInteger publicKey1 = keyPair.getPublicKey();
-        String publicKeyHex = Numeric.toHexStringWithPrefix(publicKey1);
-        String publicKeyHexstr = publicKeyHex;
+       // String publicKeyHex = Numeric.toHexStringWithPrefix(publicKey1);
+
+        String publicKeyHex= Numeric.toHexString(Numeric.toBytesPadded(keyPair.getPublicKey(), 64));
+
         //注意： 需要替换头
         publicKeyHex = publicKeyHex.replace("0x", "0x04");
-        //System.out.println("publicKeyHex=" + publicKeyHex);
+
         return publicKeyHex;
     }
 

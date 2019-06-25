@@ -14,6 +14,7 @@ public class Main {
         //thkUtils.privateKey="";
 
         web3.Thk web3=new web3.Thk();
+        web3.setUrl("http://test.thinkey.xyz");
 
 
         String  chainId2="2";
@@ -90,6 +91,9 @@ public class Main {
 
 
         String pub="";
+        //实例私钥
+        thkUtils.setPrivateKey("0x4c0883a69102937d6231471b5dbb6204fe5129617082792ae468d01a3f362318");
+
         //通过私钥获取公钥
         pub=thkUtils.GetPublicKey();
         //获取ecKeyPair 用于生成签名

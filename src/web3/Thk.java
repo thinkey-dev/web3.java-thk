@@ -19,12 +19,23 @@ import models.vo.Transaction;
  */
 public class Thk {
 
-   /**
-    * 服务期地址
-    *
-    * */
-   //public String Url="http://test.thinkey.xyz";
-   public String Url="http://192.168.1.13:8093";
+
+    /**
+     * 服务期地址
+     *
+     * */
+    public String Url="";
+
+    public String getUrl() {
+        return Url;
+    }
+
+    public void setUrl(String url) {
+        Url = url;
+    }
+
+
+   //public String Url="http://192.168.1.13:8093";
 
    /* 获取账户余额*/
    public Map GetAccount(String chainId,String address ){
