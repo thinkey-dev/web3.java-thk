@@ -38,7 +38,9 @@ public class Contract_Test {
 
         //设置服务器地址
         Thk web3=new Thk();
-        web3.setUrl("http://192.168.1.13:8089");
+
+        web3.setUrl("http://test.thinkey.xyz");
+
 
         Transaction info=new Transaction();
 
@@ -118,7 +120,11 @@ public class Contract_Test {
                     resultCall.get("out").toString(),
                     function.getOutputParameters());
             //out Greetings!!
-            System.out.println("output...:"+utf8Strings);
+            //System.out.println("output...:"+utf8Strings);
+
+            for (Type t:utf8Strings) {
+                System.out.println("output...:"+t.getValue().toString());
+            }
 
         }catch (Exception ex)
         {
