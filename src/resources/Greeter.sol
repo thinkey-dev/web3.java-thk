@@ -1,3 +1,4 @@
+pragma experimental ABIEncoderV2;
 pragma solidity >=0.4.21;
 
 contract Greeter {
@@ -11,7 +12,10 @@ contract Greeter {
         greeting = _greeting;
     }
 
-    function greet() view public  returns ( string memory)  {
-        return greeting;
+    function greet() view public  returns ( string [] memory ret)  {
+        string[] memory b = new string[](2) ;
+        b[0] = "hello1";
+        b[1] = "world";
+        ret = b;
     }
 }

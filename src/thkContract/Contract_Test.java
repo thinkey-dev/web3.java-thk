@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import models.vo.Transaction;
 import org.web3j.abi.FunctionReturnDecoder;
 import org.web3j.abi.TypeReference;
+import org.web3j.abi.datatypes.DynamicArray;
 import org.web3j.abi.datatypes.Function;
 import org.web3j.abi.datatypes.Type;
 import org.web3j.abi.datatypes.Utf8String;
@@ -37,7 +38,7 @@ public class Contract_Test {
 
         //设置服务器地址
         Thk web3=new Thk();
-        web3.setUrl("http://test.thinkey.xyz");
+        web3.setUrl("http://192.168.1.13:8089");
 
         Transaction info=new Transaction();
 
@@ -109,8 +110,7 @@ public class Contract_Test {
             System.out.println(resultx1);
 
 
-            Function function = new Function("greet", Arrays.asList(), Arrays.asList(
-                    new TypeReference<Utf8String>() { }));
+            Function function = new Function("greet", Arrays.asList(),Arrays.asList(new TypeReference<DynamicArray<Utf8String>>() { }));
 
             Map resultCall= Contract.Call(web3,info,function);
             System.out.println(resultCall);
