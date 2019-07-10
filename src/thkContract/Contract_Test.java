@@ -117,6 +117,7 @@ public class Contract_Test {
 
             Map resultCall= Contract.Call(web3,info,function);
             System.out.println(resultCall);
+
             List<Type> utf8Strings = FunctionReturnDecoder.decode(
                     resultCall.get("out").toString(),
                     function.getOutputParameters());

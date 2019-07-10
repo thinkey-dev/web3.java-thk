@@ -43,6 +43,9 @@ public class TypeDecoder {
             return 0;
         } else if (DynamicBytes.class.isAssignableFrom(type)
                 || Utf8String.class.isAssignableFrom(type)) {
+            if(decodeUintAsInt(input, offset)==0){
+                return  1;
+            }
             // length field + data value
             return (decodeUintAsInt(input, offset) / Type.MAX_BYTE_LENGTH) + 2;
         } else {
@@ -259,11 +262,11 @@ public class TypeDecoder {
                                 + "http://solidity.readthedocs.io/en/develop/types.html#members");
             } else {
                 List<T> elements = new ArrayList<>(length);
-
                 for (int i = 0, currOffset = getSingleElementLength(input, offset, cls)* MAX_BYTE_LENGTH_FOR_HEX_STRING;
                         i < length;
                         i++, currOffset += getSingleElementLength(input, currOffset, cls)
                              * MAX_BYTE_LENGTH_FOR_HEX_STRING) {
+                    System.out.println("currOffset:i="+i+"  "+currOffset);
                     T value = decode(input, currOffset, cls);
                     elements.add(value);
                 }

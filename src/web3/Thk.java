@@ -35,7 +35,6 @@ public class Thk {
     }
 
 
-   //public String Url="http://192.168.1.13:8093";
 
    /* 获取账户余额*/
    public Map GetAccount(String chainId,String address ){
