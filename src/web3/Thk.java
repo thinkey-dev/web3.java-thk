@@ -128,6 +128,7 @@ public class Thk {
     }
 
     //发送交易
+    @Deprecated
     public Map SendTx(String chainId, String fromChainId, String toChainId, String sig, String pub, String from,
                       String to, String nonce, String value,String input){
         //举例
@@ -231,6 +232,7 @@ public class Thk {
     }
 
    //从合约中读取本地节点的数据
+   @Deprecated
    public Map CallTransaction(String chainId,String from,String  to  ,String nonce, String value,String input){
        //举例
        Map map=new HashMap();

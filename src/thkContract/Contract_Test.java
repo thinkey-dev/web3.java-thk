@@ -93,6 +93,7 @@ public class Contract_Test {
             if (resultx.containsKey("contractAddress")){
                 info.setTo(resultx.get("contractAddress").toString());
             }else{
+                //System.err.println(resultx);
                 System.err.println("contractAddress is empty.....");
             }
 
