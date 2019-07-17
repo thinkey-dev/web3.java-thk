@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f148a07-791a-4fb0-a086-826d6cc5ebe8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Web3/Main.class" afterPath="$PROJECT_DIR$/out/production/Web3/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Web3/web3/Thk.class" afterPath="$PROJECT_DIR$/out/production/Web3/web3/Thk.class" />
+    <list default="true" id="9f148a07-791a-4fb0-a086-826d6cc5ebe8" name="Default" comment="增加生成支票证明，  生成取消支票的证明。获取节点运行信息">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/vo/MakeCCCExistenceProof.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/vo/RpcMakeVccProof.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/web3/Thk.java" afterPath="$PROJECT_DIR$/src/web3/Thk.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -289,6 +286,60 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Web3-Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web3-Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web3-Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web3-Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web3-Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web3-Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web3-Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -790,7 +841,7 @@
       <workItem from="1563172717211" duration="96000" />
       <workItem from="1563185192252" duration="35000" />
       <workItem from="1563343315125" duration="3968000" />
-      <workItem from="1563348664509" duration="2475000" />
+      <workItem from="1563348664509" duration="2591000" />
     </task>
     <task id="LOCAL-00001" summary="call send">
       <created>1561011526338</created>
@@ -897,11 +948,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563343889319</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="增加生成支票证明，  生成取消支票的证明。获取节点运行信息">
+      <created>1563351228768</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1563351228768</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121261000" />
+    <option name="totallyTimeSpent" value="121377000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1985" y="-4" width="1855" height="1084" extended-state="6" />
@@ -952,7 +1010,9 @@
     <MESSAGE value="V1.2 更新了参数传数组" />
     <MESSAGE value="整理废弃方法" />
     <MESSAGE value="V1.3 更新返回值" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.3 更新返回值" />
+    <MESSAGE value="增加生成支票证明，  生成取消支票的证明" />
+    <MESSAGE value="增加生成支票证明，  生成取消支票的证明。获取节点运行信息" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加生成支票证明，  生成取消支票的证明。获取节点运行信息" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
