@@ -12,6 +12,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.sun.javafx.collections.MappingChange;
 import models.Account;
 import models.TransactionByHash;
+import models.vo.MakeCCCExistenceProof;
+import models.vo.RpcMakeVccProof;
 import models.vo.Transaction;
 
 /**
@@ -270,6 +272,59 @@ public class Thk {
         return maps;
     }
 
+    //生成取消支票的证明
+    public Map  MakeCCCExistenceProof(MakeCCCExistenceProof info){
+        //举例参数
+        Map map=new HashMap();
+        map.put("chainId",info.getChainId());
+        map.put("from",info.getFrom());
+        map.put("to",info.getTo());
+        map.put("fromChainId",info.getFromChainId());
+        map.put("toChainId",info.getToChainId());
+        map.put("value",info.getValue());
+        map.put("nonce",info.getNonce());
+        map.put("expireheight",info.getExpireheight());
+
+        String jsonObj = JSONObject.toJSONString(map);
+        String postJson="{\"method\": \"MakeCCCExistenceProof\",\"params\": "+jsonObj+"}";
+        String result=Post(Url,postJson);
+        Map maps = (Map) JSON.parse(result);
+        return maps;
+    }
+
+
+    //生成支票的证明
+    public Map   RpcMakeVccProoff(RpcMakeVccProof info){
+        //举例参数
+        Map map=new HashMap();
+        map.put("chainId",info.getChainId());
+        map.put("from",info.getFrom());
+        map.put("to",info.getTo());
+        map.put("fromChainId",info.getFromChainId());
+        map.put("toChainId",info.getToChainId());
+        map.put("value",info.getValue());
+        map.put("nonce",info.getNonce());
+        map.put("expireheight",info.getExpireheight());
+
+        String jsonObj = JSONObject.toJSONString(map);
+        String postJson="{\"method\": \"RpcMakeVccProof\",\"params\": "+jsonObj+"}";
+        String result=Post(Url,postJson);
+        Map maps = (Map) JSON.parse(result);
+        return maps;
+    }
+
+    //获取节点运行信息
+    public Map   Ping(String address){
+        //举例参数
+        Map map=new HashMap();
+        map.put("address",address);
+        String jsonObj = JSONObject.toJSONString(map);
+        String postJson="{\"method\": \"Ping\",\"params\": "+jsonObj+"}";
+        String result=Post(Url+"/chaininfo",postJson);
+        Map maps = (Map) JSON.parse(result);
+        return maps;
+    }
+
 
 
     /**
@@ -335,6 +390,8 @@ public class Thk {
         }
         return "error"; // 自定义错误信息
     }
+
+
 
 
 

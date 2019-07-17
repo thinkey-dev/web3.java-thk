@@ -1,4 +1,6 @@
 import com.alibaba.fastjson.JSONArray;
+import models.vo.MakeCCCExistenceProof;
+import models.vo.RpcMakeVccProof;
 import models.vo.Transaction;
 import utils.*;
 import java.util.Map;
@@ -19,6 +21,9 @@ public class Main {
 
         String  chainId2="2";
         String  chainId3="3";
+
+
+
 
 
 
@@ -143,8 +148,50 @@ public class Main {
         Map calltrResult=web3.CallTransaction(info_call);
         System.out.println(calltrResult);
 
+
+
         //11. 发送合约
         //    详见 thkContract->Contract_Test
+
+
+
+        //12. 生成支票的证明
+
+        RpcMakeVccProof rpcInfo=new RpcMakeVccProof();
+        rpcInfo.setChainId("3");
+        rpcInfo.setFrom("0x2c7536e3605d9c16a7a3d7b1898e529396a65c23");
+        rpcInfo.setTo("0x4fa1c4e6182b6b7f3bca273390cf587b50b47311");
+        rpcInfo.setFromChainId("2");
+        rpcInfo.setToChainId("3");
+        rpcInfo.setValue("1");
+        rpcInfo.setExpireheight("284228");
+        rpcInfo.setNonce("10");
+        Map mapVccResult=web3.RpcMakeVccProoff(rpcInfo);
+        System.out.println(mapVccResult);
+
+
+        //13.  生成取消支票的证明
+        MakeCCCExistenceProof parInfo=new MakeCCCExistenceProof();
+        parInfo.setChainId("3");
+        parInfo.setFrom("0x2c7536e3605d9c16a7a3d7b1898e529396a65c23");
+        parInfo.setTo("0x4fa1c4e6182b6b7f3bca273390cf587b50b47311");
+        parInfo.setFromChainId("3");
+        parInfo.setToChainId("3");
+        parInfo.setValue("1");
+        parInfo.setExpireheight("33772");
+        parInfo.setNonce("9");
+        Map mapccc=web3.MakeCCCExistenceProof(parInfo);
+        System.out.println(mapccc);
+
+
+
+
+        //14. 获取节点运行信息
+
+        //测试护节点地址
+        String ipAddress="192.168.1.7:22007";
+        Map mapPing=web3.Ping(ipAddress);
+        System.out.println(mapPing);
 
     }
 
