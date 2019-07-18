@@ -184,8 +184,6 @@ public class Main {
         System.out.println(mapccc);
 
 
-
-
         //14. 获取节点运行信息
 
         //测试护节点地址
@@ -194,6 +192,4 @@ public class Main {
         System.out.println(mapPing);
 
     }
-
-
 }

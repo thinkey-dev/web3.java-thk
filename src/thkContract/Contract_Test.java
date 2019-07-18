@@ -116,7 +116,7 @@ public class Contract_Test {
             Function function = new Function("greet", Arrays.asList(),Arrays.asList(new TypeReference<DynamicArray<Utf8String>>() { }));
 
             Map resultCall= Contract.Call(web3,info,function);
-            System.out.println(resultCall);
+            System.out.println("resultCall:"+resultCall);
 
             List<Type> utf8Strings = FunctionReturnDecoder.decode(
                     resultCall.get("out").toString(),
