@@ -376,12 +376,14 @@ response:
 | size | string | true | 页的大小 |
 
 响应参数：
+
 | 参数名 | 类型 | 是否必须| 含义 |
 | :------:| :------: | :------: | :------: |
 | elections | dict | true | 交易详情 |
 |accountchanges | array | true | 交易信息 |
  
-accountchanges:         
+accountchanges:  
+
 | 参数名 | 类型 | 是否必须| 含义 |
 | :------:| :------: | :------: | :------: |
 | chainId | string | true | 链id |
@@ -431,6 +433,7 @@ Output 为.abi 和.bin 生成目录
 #### 9.1 发布合约(Contract.Deploy)
 
 请求参数：
+
 | 参数名 | 类型 | 是否必须| 含义 |
 | :------:| :------: | :------: | :------: |
 | Transaction | Transaction | true | 交易实体Model |
@@ -438,6 +441,7 @@ Output 为.abi 和.bin 生成目录
 | parameters | List<Type> | true | 传入的参数 |
 
 响应参数：
+
 | 参数名 | 类型 | 是否必须| 含义 |
 | :------:| :------: | :------: | :------: |
 | TXhash | string | true | 交易Hash |
@@ -456,12 +460,14 @@ Thread.sleep(5000);    //延时5秒
 #### 9.2 需要共识且修改数据状态的合约调用(Contract.Send)
 
 请求参数：
+
 | 参数名 | 类型 | 是否必须| 含义 |
 | :------:| :------: | :------: | :------: |
 | Transaction | Transaction | true | 交易实体Model |
 | function | Function | true | 函数 |
 
 响应参数：
+
 | 参数名 | 类型 | 是否必须| 含义 |
 | :------:| :------: | :------: | :------: |
 | TXhash | string | true | 交易Hash |
@@ -479,12 +485,14 @@ System.out.println("resultSend : "+resultSend);
 #### 9.3 从本地节点获取数据的合约调用(Contract.Call)
 
 请求参数：
+
 | 参数名 | 类型 | 是否必须| 含义 |
 | :------:| :------: | :------: | :------: |
 | Transaction | Transaction | true | 交易实体Model |
 | function | Function | true | 函数 |
 
 响应参数：
+
 | 参数名 | 类型 | 是否必须| 含义 |
 | :------:| :------: | :------: | :------: |
 | Transaction | Transaction | true | 交易实体Model |
@@ -498,6 +506,7 @@ System.out.println("resultSend : "+resultSend);
 
 
 Transaction:
+
 | 参数名 | 类型 | 是否必须| 含义 |
 | :------:| :------: | :------: | :------: |
 | chainId | string | true | 链id |
