@@ -1,5 +1,12 @@
 # Web3-Java
 
+## 请安装JavaJDK
+    thk@hcy-System-Product-Name:~$ java -version
+    java version "1.8.0_111"
+    Java(TM) SE Runtime Environment (build 1.8.0_111-b14)
+    Java HotSpot(TM) 64-Bit Server VM (build 25.111-b14, mixed mode)
+    thk@hcy-System-Product-Name:~$ 
+
 ## 如何调用
 
 web3.Thk web3=new web3.Thk();
