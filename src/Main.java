@@ -132,21 +132,21 @@ public class Main {
 
         //9. 获取委员会成员
         String epoch="1";
-        JSONArray result_CommitteeInfo=web3.GetCommittee(chainId3,epoch);
+        JSONArray result_CommitteeInfo=web3.GetCommittee(chainId2,epoch);
         System.out.println(result_CommitteeInfo);
 
-        //10  从合约中读取本地节点的数据
-        Transaction info_call=new Transaction();
-        info_call.setChainId("1");
-        info_call.setFrom("0x0000000000000000000000000000000000000000");
-        info_call.setTo("0x0e50cea0402d2a396b0db1c5d08155bd219cc52e");
-        info_call.setNonce("15");
-        info_call.setValue("0");
-        info_call.setInput("0xdfc02018");
-        info_call.setFromChainId("1");
-        info_call.setToChainId("1");
-        Map calltrResult=web3.CallTransaction(info_call);
-        System.out.println(calltrResult);
+//        //10  从合约中读取本地节点的数据
+//        Transaction info_call=new Transaction();
+//        info_call.setChainId("1");
+//        info_call.setFrom("0x0000000000000000000000000000000000000000");
+//        info_call.setTo("0x0e50cea0402d2a396b0db1c5d08155bd219cc52e");
+//        info_call.setNonce("15");
+//        info_call.setValue("0");
+//        info_call.setInput("0xdfc02018");
+//        info_call.setFromChainId("1");
+//        info_call.setToChainId("1");
+//        Map calltrResult=web3.CallTransaction(info_call);
+//        System.out.println(calltrResult);
 
 
 
