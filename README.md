@@ -11,12 +11,12 @@
 
 web3.Thk web3=new web3.Thk();
 
-web3.setUrl("http://test.thinkey.xyz");
+web3.setUrl("http://rpcproxy.thinkey.xyz");
 
 
 #### 举例： 获取账户余额 (各函数调用详见源码)
 
-    String chainId="2";
+    String chainId="1";
     String address="0x2c7536e3605d9c16a7a3d7b1898e529396a65c23";
     Map map=web3.GetAccount(chainId,address);
     System.out.println(map);
@@ -46,7 +46,7 @@ web3.setUrl("http://test.thinkey.xyz");
 
 请求示例:
 ```
-String chainId="2";
+String chainId="1";
 String address="0x2c7536e3605d9c16a7a3d7b1898e529396a65c23";
 Map map=web3.GetAccount(chainId,address);
 System.out.println(map);
@@ -87,9 +87,9 @@ System.out.println(map);
 
 请求示例:
 ```
-String chainId22="2";
-String fromChainId="2";
-String toChainId="2";
+String chainId22="1";
+String fromChainId="1";
+String toChainId="1";
 //使用签名方法
 String sig="0x3c0c75b4dea8c8335475d462bd12dae9e746e3532c6a6b2791cafca565c6610a429fb7260e2f3c64b8e6eb090ee123db700ed2c5f0a4d9a314152f721f0a847101";
 String pub="0x044e3b81af9c2234cad09d679ce6035ed1392347ce64ce405f5dcd36228a25de6e47fd35c4215d1edf53e6f83de344615ce719bdb0fd878f6ed76f06dd277956de";
@@ -145,7 +145,7 @@ Transaction:
 
 请求示例:
 ```
-chainId="3";
+chainId="1";
 String hash="0xb298a034848ea3fccf421824c9bc42d1525994843fcda67fd01ca66f16128ebe";
 Map maptx=web3.GetTransactionByHash(chainId,hash);
 System.out.println(maptx);
@@ -196,7 +196,7 @@ System.out.println(maptx);
 
 请求示例:
 ```
-ChainId="2";
+ChainId="1";
 Map mapstas=web3.GetStats(chainId);
 System.out.println(mapstas);
 ```
@@ -247,7 +247,7 @@ System.out.println(mapstas);
 
 请求示例:
 ```
-String  chainIdtxs="2";
+String  chainIdtxs="1";
 String  address_gettx="0x2c7536e3605d9c16a7a3d7b1898e529396a65c23";
 String  startHeight="50";
 String  endHeight="100";
@@ -259,7 +259,7 @@ System.out.println(arr);
 Response Body:
 [
     {
-        "chainId": 2,
+        "chainId": 1,
         "from": "0x2c7536e3605d9c16a7a3d7b1898e529396a65c23",
         "to": "0x4b69a38eed4c24fb85ca79146d7c07392136e178",
         "nonce": 0,
@@ -311,14 +311,14 @@ Response Body:
 请求示例:
 ```
 Transaction info_call=new Transaction();
-info_call.setChainId("2");
+info_call.setChainId("1");
 info_call.setFrom("0x0000000000000000000000000000000000000000");
 info_call.setTo("0x0e50cea0402d2a396b0db1c5d08155bd219cc52e");
 info_call.setNonce("15");
 info_call.setValue("0");
 info_call.setInput("0xdfc02018");
-info_call.setFromChainId("2");
-info_call.setToChainId("2");
+info_call.setFromChainId("1");
+info_call.setToChainId("1");
 Map calltrResult=web3.CallTransaction(info_call);
 System.out.println(calltrResult);
 ```
@@ -361,7 +361,7 @@ response:
 {
 "hash": "0x71603186004fd46d32cda0780c4f4cf77ce13b396b1b8132b2c632173441b9d2",
 "previoushash": "0xd0f6e9c89eb6be655632911e3743b5a994423c3526653dc55b62ebea3ff56c43",
-"chainid": 2,
+"chainid": 1,
 "height": 30,
 "mergeroot": "0xdddfde85423a0d7da064c1b5a8cc1ff18d4a209027ef95ecceae0e6ed8f7c1af",
 "deltaroot": "0xdddfde85423a0d7da064c1b5a8cc1ff18d4a209027ef95ecceae0e6ed8f7c1af",
@@ -418,7 +418,7 @@ response:
 "elections": null,
 "accountchanges": [
 {
-"chainid": 2,
+"chainid": 1,
 "height": 30,
 "from": "0x4fa1c4e6182b6b7f3bca273390cf587b50b47311",
 "to": "0x4fa1c4e6182b6b7f3bca273390cf587b50b47311",
@@ -815,7 +815,7 @@ System.out.println(result_ChainInfo);
 请求示例:
 ```
 String epoch="1";
-String chainId3="3";
+String chainId3="1";
 JSONArray result_CommitteeInfo=web3.GetCommittee(chainId3,epoch);
 System.out.println(result_CommitteeInfo);
 Response Body:

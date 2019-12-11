@@ -39,7 +39,7 @@ public class Contract_Test {
         //设置服务器地址
         Thk web3=new Thk();
 
-        web3.setUrl("http://test.thinkey.xyz");
+        web3.setUrl("http://rpcproxy.thinkey.xyz");
 
 
         Transaction info=new Transaction();
@@ -59,10 +59,10 @@ public class Contract_Test {
 
         System.out.println("Contract Test......");
 
-        String chainId22="2";
-        info.setChainId("2");
-        info.setFromChainId("2");
-        info.setToChainId("2");
+        String chainId22="1";
+        info.setChainId("1");
+        info.setFromChainId("1");
+        info.setToChainId("1");
         info.setValue("0");
         info.setInput("");
         info.setPub(thkUtils.GetPublicKey());

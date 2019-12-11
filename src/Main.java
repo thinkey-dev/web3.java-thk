@@ -16,10 +16,10 @@ public class Main {
         //thkUtils.privateKey="";
 
         web3.Thk web3=new web3.Thk();
-        web3.setUrl("http://test.thinkey.xyz");
+        web3.setUrl("http://rpcproxy.thinkey.xyz");
 
 
-        String  chainId2="2";
+        String  chainId2="1";
         String  chainId3="3";
 
 
@@ -29,9 +29,9 @@ public class Main {
 
         // 1. 获取对应账户金额
 
-        //举例参数： chainId=2   address="0x2c7536e3605d9c16a7a3d7b1898e529396a65c23"
+        //举例参数： chainId=1   address="0x2c7536e3605d9c16a7a3d7b1898e529396a65c23"
 
-        String chainId="2";
+        String chainId="1";
         String address="0x2c7536e3605d9c16a7a3d7b1898e529396a65c23";
         Map map=web3.GetAccount(chainId,address);
         System.out.println(map);
@@ -40,9 +40,9 @@ public class Main {
 
         // 2. 获取交易详情
 
-        //举例参数： chainId="3"  hash="0xb298a034848ea3fccf421824c9bc42d1525994843fcda67fd01ca66f16128ebe";
+        //举例参数： chainId="1"  hash="0xb298a034848ea3fccf421824c9bc42d1525994843fcda67fd01ca66f16128ebe";
 
-        chainId="3";
+        chainId="1";
 
         String hash="0xb298a034848ea3fccf421824c9bc42d1525994843fcda67fd01ca66f16128ebe";
         Map maptx=web3.GetTransactionByHash(chainId,hash);
@@ -53,7 +53,7 @@ public class Main {
 
         //举例参数： chainId="2"
 
-        chainId="2";
+        chainId="1";
         Map mapstas=web3.GetStats(chainId);
         System.out.println(mapstas);
 
@@ -61,7 +61,7 @@ public class Main {
         // 4. 获取指定账户在对应链上一定高度范围内的交易信息
 
         //举例参数：
-        String  chainIdtxs="2";
+        String  chainIdtxs="1";
         String  address_gettx="0x2c7536e3605d9c16a7a3d7b1898e529396a65c23";
         String  startHeight="50";
         String  endHeight="100";
@@ -90,9 +90,9 @@ public class Main {
 
         // 7. 发送一笔交易
         // 举例参数：
-        String chainId22="2";
-        String fromChainId="2";
-        String toChainId="2";
+        String chainId22="1";
+        String fromChainId="1";
+        String toChainId="1";
 
 
         String pub="";
@@ -105,11 +105,11 @@ public class Main {
         ECKeyPair ecKeyPair=thkUtils.GetECKeyPair();
 
         Transaction transaction=new Transaction();
-        transaction.setChainId("2");
+        transaction.setChainId("1");
         transaction.setFrom("0x2c7536e3605d9c16a7a3d7b1898e529396a65c23");
         transaction.setTo("0x6ea0fefc17c877c7a4b0f139728ed39dc134a967");
-        transaction.setToChainId("2");
-        transaction.setFromChainId("2");
+        transaction.setToChainId("1");
+        transaction.setFromChainId("1");
         transaction.setNonce("33"); //可自动获取
         transaction.setValue("2333");
         transaction.setInput("");
@@ -137,14 +137,14 @@ public class Main {
 
         //10  从合约中读取本地节点的数据
         Transaction info_call=new Transaction();
-        info_call.setChainId("2");
+        info_call.setChainId("1");
         info_call.setFrom("0x0000000000000000000000000000000000000000");
         info_call.setTo("0x0e50cea0402d2a396b0db1c5d08155bd219cc52e");
         info_call.setNonce("15");
         info_call.setValue("0");
         info_call.setInput("0xdfc02018");
-        info_call.setFromChainId("2");
-        info_call.setToChainId("2");
+        info_call.setFromChainId("1");
+        info_call.setToChainId("1");
         Map calltrResult=web3.CallTransaction(info_call);
         System.out.println(calltrResult);
 
@@ -155,41 +155,41 @@ public class Main {
 
 
 
-        //12. 生成支票的证明
-
-        RpcMakeVccProof rpcInfo=new RpcMakeVccProof();
-        rpcInfo.setChainId("3");
-        rpcInfo.setFrom("0x2c7536e3605d9c16a7a3d7b1898e529396a65c23");
-        rpcInfo.setTo("0x4fa1c4e6182b6b7f3bca273390cf587b50b47311");
-        rpcInfo.setFromChainId("2");
-        rpcInfo.setToChainId("3");
-        rpcInfo.setValue("1");
-        rpcInfo.setExpireheight("284228");
-        rpcInfo.setNonce("10");
-        Map mapVccResult=web3.RpcMakeVccProoff(rpcInfo);
-        System.out.println(mapVccResult);
-
-
-        //13.  生成取消支票的证明
-        MakeCCCExistenceProof parInfo=new MakeCCCExistenceProof();
-        parInfo.setChainId("3");
-        parInfo.setFrom("0x2c7536e3605d9c16a7a3d7b1898e529396a65c23");
-        parInfo.setTo("0x4fa1c4e6182b6b7f3bca273390cf587b50b47311");
-        parInfo.setFromChainId("3");
-        parInfo.setToChainId("3");
-        parInfo.setValue("1");
-        parInfo.setExpireheight("33772");
-        parInfo.setNonce("9");
-        Map mapccc=web3.MakeCCCExistenceProof(parInfo);
-        System.out.println(mapccc);
-
-
-        //14. 获取节点运行信息
-
-        //测试护节点地址
-        String ipAddress="192.168.1.7:22007";
-        Map mapPing=web3.Ping(ipAddress);
-        System.out.println(mapPing);
+//        //12. 生成支票的证明
+//
+//        RpcMakeVccProof rpcInfo=new RpcMakeVccProof();
+//        rpcInfo.setChainId("3");
+//        rpcInfo.setFrom("0x2c7536e3605d9c16a7a3d7b1898e529396a65c23");
+//        rpcInfo.setTo("0x4fa1c4e6182b6b7f3bca273390cf587b50b47311");
+//        rpcInfo.setFromChainId("1");
+//        rpcInfo.setToChainId("3");
+//        rpcInfo.setValue("1");
+//        rpcInfo.setExpireheight("284228");
+//        rpcInfo.setNonce("10");
+//        Map mapVccResult=web3.RpcMakeVccProoff(rpcInfo);
+//        System.out.println(mapVccResult);
+//
+//
+//        //13.  生成取消支票的证明
+//        MakeCCCExistenceProof parInfo=new MakeCCCExistenceProof();
+//        parInfo.setChainId("3");
+//        parInfo.setFrom("0x2c7536e3605d9c16a7a3d7b1898e529396a65c23");
+//        parInfo.setTo("0x4fa1c4e6182b6b7f3bca273390cf587b50b47311");
+//        parInfo.setFromChainId("3");
+//        parInfo.setToChainId("3");
+//        parInfo.setValue("1");
+//        parInfo.setExpireheight("33772");
+//        parInfo.setNonce("9");
+//        Map mapccc=web3.MakeCCCExistenceProof(parInfo);
+//        System.out.println(mapccc);
+//
+//
+//        //14. 获取节点运行信息
+//
+//        //测试护节点地址
+//        String ipAddress="192.168.1.7:22007";
+//        Map mapPing=web3.Ping(ipAddress);
+//        System.out.println(mapPing);
 
     }
 }
