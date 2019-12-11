@@ -51,7 +51,7 @@ public class Main {
 
         // 3. 获取链详情
 
-        //举例参数： chainId="2"
+        //举例参数： chainId="1"
 
         chainId="1";
         Map mapstas=web3.GetStats(chainId);
