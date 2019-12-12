@@ -150,8 +150,8 @@ public class Main {
 
 
 
-        //11. 发送合约
-        //    详见 thkContract->Contract_Test
+        //11. 发送合约    ***
+        //    详见 thkContract->Contract_Test  ***
 
 
 
